@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import BottomNavBar from './components/BottomNavBar';
+import Feed from './components/Feed';
+import Analytics from './components/Analytics';
+import PostPage from './components/PostPage';       // New component
+import WorkoutPage from './components/WorkoutPage'; // New component
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        <Routes>
+          <Route path="/feed" element={<Feed />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/post" element={<PostPage />} />
+          <Route path="/workout" element={<WorkoutPage />} />
+          <Route path="/" element={<Feed />} />
+        </Routes>
+        <BottomNavBar />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
