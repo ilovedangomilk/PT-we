@@ -1,9 +1,16 @@
 import React from 'react';
 import TopBar from './TopBar';
 import { Line } from '@ant-design/charts';
+import { Card } from 'antd'; // Import Card component
 import './Analytics.css';
 
 const Analytics: React.FC = () => {
+    // Sample statistics data
+    const totalExercises = 120;
+    const totalTimeSpent = '50h 30m';
+    const totalCaloriesBurned = 35000;
+    const totalWorkoutsThisWeek = 1289;
+
   // Sample data for the charts
   const data1 = [
     { date: '01-09-24', value: 10 },
@@ -41,6 +48,14 @@ const Analytics: React.FC = () => {
     // ... more data points
   ];
 
+  const data5 = [
+    { date: '01-09-24', value: 100 },
+    { date: '02-09-24', value: 200 },
+    { date: '03-09-24', value: 300 },
+    { date: '04-09-24', value: 400 },
+    { date: '05-09-24', value: 500 },
+  ]
+
   // Configuration for the line charts
   const chartConfig = (data: any[], title: string) => ({
     data,
@@ -64,21 +79,48 @@ const Analytics: React.FC = () => {
     <div className="analytics-page">
       <TopBar title="Analytics" />
       <div className="analytics-content">
-        <div className="chart-container">
-          <h3>Chart 1: Metric One</h3>
-          <Line {...chartConfig(data1, 'Metric One')} />
+        {/* Statistic Boxes */}
+        <div className="stats-grid">
+          <Card className="stat-card">
+            <h3>Total Exercises Done</h3>
+            <p>{totalExercises}</p>
+          </Card>
+          <Card className="stat-card">
+            <h3>Total Time Spent</h3>
+            <p>{totalTimeSpent}</p>
+          </Card>
+          <Card className="stat-card">
+            <h3>Total Calories Burned</h3>
+            <p>{totalCaloriesBurned.toLocaleString()} kcal</p>
+          </Card>
+          <Card className="stat-card">
+            <h3>Days since start</h3>
+            <p>{totalWorkoutsThisWeek}</p>
+          </Card>
         </div>
-        <div className="chart-container">
-          <h3>Chart 2: Metric Two</h3>
-          <Line {...chartConfig(data2, 'Metric Two')} />
-        </div>
-        <div className="chart-container">
-          <h3>Chart 3: Metric Three</h3>
-          <Line {...chartConfig(data3, 'Metric Three')} />
-        </div>
-        <div className="chart-container">
-          <h3>Chart 4: Metric Four</h3>
-          <Line {...chartConfig(data4, 'Metric Four')} />
+
+        {/* Charts */}
+        <div className="charts-container">
+          <div className="chart-container">
+            <h3>Chart 1: Metric One</h3>
+            <Line {...chartConfig(data1, 'Metric One')} />
+          </div>
+          <div className="chart-container">
+            <h3>Chart 2: Metric Two</h3>
+            <Line {...chartConfig(data2, 'Metric Two')} />
+          </div>
+          <div className="chart-container">
+            <h3>Chart 3: Metric Three</h3>
+            <Line {...chartConfig(data3, 'Metric Three')} />
+          </div>
+          <div className="chart-container">
+            <h3>Chart 4: Metric Four</h3>
+            <Line {...chartConfig(data4, 'Metric Four')} />
+          </div>
+          <div className="chart-container">
+            <h3>Chart 5: Metric Five</h3>
+            <Line {...chartConfig(data5, 'Metric Five')} />
+          </div>
         </div>
       </div>
     </div>
